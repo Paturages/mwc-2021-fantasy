@@ -11,7 +11,7 @@
   const parse = $event => {
     const newPlayers = [];
     $event.target.value.split('\n').forEach(line => {
-      const [player, sel, country, price, ro32, ro16, qf, sf, f, total] = line.split('\t');
+      const [,, player, sel, country, price, ro32, ro16, qf, sf, f, total] = line.split('\t');
       if (!+price) return;
       newPlayers.push({ player, sel: +sel, country, price: +price, ro32: +ro32, ro16: +ro16, qf: +qf, sf: +sf, f: +f, total: +total });
     });
@@ -131,7 +131,7 @@
       Only one "super player" (14 or 13.5)
     </p>
 
-    <textarea placeholder="Ctrl+A, Ctrl+C from 'MWC players' sheet, Ctrl+V here. Your Ctrl+A on the sheet should start on the 'B' column (not 'A')" on:input={parse}></textarea>
+    <textarea placeholder="Ctrl+A, Ctrl+C from 'MWC players' sheet, Ctrl+V here. Make sure that *everything* is selected on the sheet (all columns, even 'A')" on:input={parse}></textarea>
 
     <br />
     <select bind:value={toOptimize} on:change={compute}>
