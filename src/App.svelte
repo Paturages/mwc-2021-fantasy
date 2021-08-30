@@ -77,7 +77,7 @@
     // 6. Aggressively repeatedly remove the least viables among the selected 6 (the least points/price ratio)
     // until people can fit again and backfill with other people until the price fits
     while (sum(selected.concat(fillers), 'price') > 80) {
-      while (sum(selected.concat(fillers), 'price') + playersByPrice[playersByPrice.length-1].price > 80) {
+      while (sum(selected.concat(fillers), 'price') + (playersByPrice[playersByPrice.length-1].price * (8 - selected.length - fillers.length)) > 80) {
         let min = Infinity;
         let minIndex = null;
         selected.forEach((p, i) => {
